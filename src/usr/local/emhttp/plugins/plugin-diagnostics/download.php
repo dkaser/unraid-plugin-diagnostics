@@ -2,6 +2,8 @@
 
 $docroot = $docroot ?? $_SERVER['DOCUMENT_ROOT'] ?: '/usr/local/emhttp';
 
+require_once "{$docroot}/plugins/plugin-diagnostics/include/helpers.php";
+
 $configFile = realpath("{$docroot}/plugins/{$_GET['plugin']}/diagnostics.json");
 if ( ! str_starts_with($configFile, "{$docroot}/plugins/")) {
     echo "Bad Request";
