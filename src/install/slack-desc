@@ -1,5 +1,9 @@
                          |-----handy-ruler------------------------------------------------------|
-unraid-plugin-diagnostics: unraid-plugin-diagnostics
+unraid-plugin-diagnostics: unraid-plugin-diagnostics (diagnostics collector)
+unraid-plugin-diagnostics:
+unraid-plugin-diagnostics: This package provides a diagnostics collector that plugins can use
+unraid-plugin-diagnostics: to collect logs and other troubleshooting information (config files,
+unraid-plugin-diagnostics: shell command output, etc.)
 unraid-plugin-diagnostics:
 unraid-plugin-diagnostics: https://github.com/dkaser/unraid-plugin-diagnostics
 unraid-plugin-diagnostics:
