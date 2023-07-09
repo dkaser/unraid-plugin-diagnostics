@@ -1,1 +1,1 @@
-( cd usr/local/sbin/diagnostics ; ln -sf /usr/local/emhttp/plugins/plugin-diagnostics/plugin-diagnostics plugin-diagnostics )
+( cd usr/local/sbin ; ln -sf /usr/local/emhttp/plugins/plugin-diagnostics/plugin-diagnostics plugin-diagnostics )
