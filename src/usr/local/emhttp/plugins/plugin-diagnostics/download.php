@@ -40,7 +40,9 @@ if (array_key_exists("files", $config)) {
     foreach ($config["files"] as $file) {
         if (file_exists($file)) {
             $destFile = "{$diagnosticsFolder}/files{$file}";
-            mkdir(dirname($destFile), 0755, true);
+            if ( ! is_dir(dirname($destFile))) {
+                mkdir(dirname($destFile), 0755, true);
+            }
             copy($file, $destFile);
         }
     }
