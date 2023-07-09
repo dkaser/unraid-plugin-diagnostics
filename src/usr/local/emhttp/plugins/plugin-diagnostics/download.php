@@ -1,10 +1,11 @@
 <?php
 
 $docroot = $docroot ?? $_SERVER['DOCUMENT_ROOT'] ?: '/usr/local/emhttp';
-
 require_once "{$docroot}/plugins/plugin-diagnostics/include/helpers.php";
 
-$configFile = realpath("{$docroot}/plugins/{$_GET['plugin']}/diagnostics.json");
+$pluginName = isset($diag_plugin_name) ? $diag_plugin_name : $_GET['plugin'];
+
+$configFile = realpath("{$docroot}/plugins/{$pluginName}/diagnostics.json");
 if ( ! str_starts_with($configFile, "{$docroot}/plugins/")) {
     echo "Bad Request";
     exit;
@@ -12,7 +13,7 @@ if ( ! str_starts_with($configFile, "{$docroot}/plugins/")) {
 
 $config    = json_decode(file_get_contents($configFile), true);
 $timestamp = date("Ymd-His");
-$filename  = gethostname() . "-{$_GET['plugin']}-diag-{$timestamp}";
+$filename  = gethostname() . "-{$pluginName}-diag-{$timestamp}";
 
 $diagnosticsFile       = "/tmp/{$filename}.zip";
 $diagnosticsFolder     = "/tmp/{$filename}";
@@ -48,14 +49,18 @@ if (array_key_exists("files", $config)) {
 exec("cd /tmp && zip -qmr " . escapeshellarg($diagnosticsFile) . " " . escapeshellarg("{$filename}/"));
 
 if (file_exists($diagnosticsFile)) {
-    // Send the file
-    header('Content-type: application/zip');
-    header('Content-Disposition: attachment; filename="' . $filename . '.zip"');
-    header("Pragma: no-cache");
-    header("Expires: 0");
-    readfile($diagnosticsFile);
+    if (http_response_code()) {
+        // Send the file
+        header('Content-type: application/zip');
+        header('Content-Disposition: attachment; filename="' . $filename . '.zip"');
+        header("Pragma: no-cache");
+        header("Expires: 0");
+        readfile($diagnosticsFile);
 
-    unlink($diagnosticsFile);
+        unlink($diagnosticsFile);
+    } else {
+        echo "Diagnostics file written to {$diagnosticsFile}" . PHP_EOL;
+    }
 } else {
     echo "Could not generate diagnostic package.";
 }

@@ -1,0 +1,6 @@
+#!/usr/bin/php
+<?php
+
+$diag_plugin_name = $_SERVER['argv'][1];
+
+require("download.php");
