@@ -15,7 +15,11 @@ $config    = json_decode(file_get_contents($configFile), true);
 $timestamp = date("Ymd-His");
 $filename  = gethostname() . "-{$pluginName}-diag-{$timestamp}";
 
-$diagnosticsFile       = "/tmp/{$filename}.zip";
+if(http_response_code()) {
+    $diagnosticsFile       = "/tmp/{$filename}.zip";
+} else {
+    $diagnosticsFile       = "/boot/logs/{$filename}.zip";
+}
 $diagnosticsFolder     = "/tmp/{$filename}";
 $systemDiagnosticsFile = "{$diagnosticsFolder}/system-diagnostics.zip";
 
