@@ -41,8 +41,8 @@ if (array_key_exists("commands", $config)) {
 // Collect files
 if (array_key_exists("files", $config)) {
     mkdir("{$diagnosticsFolder}/files", 0755);
-    foreach ($config["files"] as $file) {
-        if (file_exists($file)) {
+    foreach ($config["files"] as $fileglob) {
+        foreach (glob($fileglob) as $file) {
             $destFile = "{$diagnosticsFolder}/files{$file}";
             if ( ! is_dir(dirname($destFile))) {
                 mkdir(dirname($destFile), 0755, true);
