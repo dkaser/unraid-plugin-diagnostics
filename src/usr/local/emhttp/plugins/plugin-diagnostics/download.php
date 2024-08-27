@@ -2,6 +2,7 @@
 
 $docroot = $docroot ?? $_SERVER['DOCUMENT_ROOT'] ?: '/usr/local/emhttp';
 require_once "{$docroot}/plugins/plugin-diagnostics/include/helpers.php";
+require_once "{$docroot}/plugins/plugin-diagnostics/include/sanitize.php";
 
 $pluginName = isset($diag_plugin_name) ? $diag_plugin_name : $_GET['plugin'];
 
@@ -35,6 +36,7 @@ if (array_key_exists("commands", $config)) {
     mkdir("{$diagnosticsFolder}/commands", 0755);
     foreach ($config["commands"] as $command) {
         file_put_contents("{$diagnosticsFolder}/commands/{$command['file']}", shell_exec($command["command"]));
+        sanitizeFile("{$diagnosticsFolder}/commands/{$command['file']}");
     }
 }
 
@@ -48,6 +50,7 @@ if (array_key_exists("files", $config)) {
                 mkdir(dirname($destFile), 0755, true);
             }
             copy($file, $destFile);
+            sanitizeFile($destFile);
         }
     }
 }
