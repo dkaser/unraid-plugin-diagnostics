@@ -51,7 +51,7 @@ The 'remove' script.
 <FILE Run="/bin/bash" Method="remove">
 <INLINE>
 <![CDATA[
-removepkg unraid-plugin-diagnostics-1.6.0
+removepkg unraid-plugin-diagnostics
 
 rm -rf /usr/local/emhttp/plugins/plugin-diagnostics
 rm -rf /boot/config/plugins/plugin-diagnostics
