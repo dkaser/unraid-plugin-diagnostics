@@ -7,11 +7,13 @@ function run($cmd, &$save=null, $timeout=30) {
     return implode("\n",$save);
   }
 
-function sanitizeFile($file) {
-    $filters = [
+function sanitizeFile($file, $customFilters = array()) {
+    $defaultFilters = [
         "s/([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})/\\1\.aaa\.aaa\.\\4/g",
         "s/([\"\[ ]([0-9a-f]{1,4}:){4})(([0-9a-f]{1,4}:){3}|:)([0-9a-f]{1,4})([/\" .]|$)/\\1XXXX:XXXX:XXXX:\\5\\6/g"
     ];
+
+    $filters = array_merge($defaultFilters, $customFilters);
 
     $ext = pathinfo($file, PATHINFO_EXTENSION);
     $gz = false;

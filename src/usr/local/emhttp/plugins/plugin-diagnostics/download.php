@@ -26,6 +26,8 @@ $systemDiagnosticsFile = "{$diagnosticsFolder}/system-diagnostics.zip";
 
 mkdir($diagnosticsFolder, 0755);
 
+$customFilters = (array_key_exists("filters", $config)) ? $config["filters"] : array();
+
 // Add system diagnostics
 if (array_key_exists("system_diagnostics", $config) ? $config["system_diagnostics"] : false) {
     exec("diagnostics '{$systemDiagnosticsFile}'");
@@ -34,23 +36,35 @@ if (array_key_exists("system_diagnostics", $config) ? $config["system_diagnostic
 // Run commands and save output
 if (array_key_exists("commands", $config)) {
     mkdir("{$diagnosticsFolder}/commands", 0755);
+
     foreach ($config["commands"] as $command) {
+        $commandFilters = array_key_exists("filters", $command) ? $command["filters"] : array();
+
         file_put_contents("{$diagnosticsFolder}/commands/{$command['file']}", shell_exec($command["command"]));
-        sanitizeFile("{$diagnosticsFolder}/commands/{$command['file']}");
+        sanitizeFile("{$diagnosticsFolder}/commands/{$command['file']}", array_merge($commandFilters,$customFilters));
     }
 }
 
 // Collect files
 if (array_key_exists("files", $config)) {
     mkdir("{$diagnosticsFolder}/files", 0755);
-    foreach ($config["files"] as $fileglob) {
+    foreach ($config["files"] as $fileobj) {
+        $fileFilters = array();
+
+        if(is_array($fileobj)) {
+            $fileglob = $fileobj['file'];
+            $fileFilters = isset($fileobj['filters']) ? $fileobj['filters'] : array();
+        } else {
+            $fileglob = $fileobj;
+        }
+
         foreach (glob($fileglob) as $file) {
             $destFile = "{$diagnosticsFolder}/files{$file}";
             if ( ! is_dir(dirname($destFile))) {
                 mkdir(dirname($destFile), 0755, true);
             }
             copy($file, $destFile);
-            sanitizeFile($destFile);
+            sanitizeFile($destFile, array_merge($fileFilters, $customFilters));
         }
     }
 }
