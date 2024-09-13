@@ -1,0 +1,28 @@
+Menu="UNRAID-OS"
+Icon="fa-wrench"
+Title="Plugin Diagnostics"
+---
+<p>Use the buttons below to download diagnostic information for the desired plugin.</p>
+<?php
+
+$path = ['/usr/local/emhttp/plugins/','/diagnostics.json'];
+$plugins = array();
+
+foreach (glob("{$path[0]}*{$path[1]}") as $file) {
+    $name = str_replace($path, "", $file);
+
+    try {
+        $data = json_decode(file_get_contents($file), false);
+        $good = true;
+
+        if(!isset($data->title)) { $good = false; }
+        if(preg_match('/[^a-zA-Z0-9 ]/', $data->title) > 0) { $good = false; }
+
+        if ($good) { $plugins[$name] = $data; }
+    } finally {}
+}
+
+foreach($plugins as $key => $value) {
+    echo("<p><input type='button' value='{$value->title}' onclick=\"window.open('/plugins/plugin-diagnostics/download.php?plugin={$key}','_blank')\" /></p>");
+}
+?>
