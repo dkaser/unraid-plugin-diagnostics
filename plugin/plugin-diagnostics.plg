@@ -1,0 +1,62 @@
+<?xml version='1.0' standalone='yes'?>
+<!DOCTYPE PLUGIN>
+
+<PLUGIN 
+  name="plugin-diagnostics"
+  author="Derek Kaser"
+  version="2024.09.12"
+  pluginURL="https://raw.githubusercontent.com/dkaser/unraid-plugin-diagnostics/main/plugin/plugin-diagnostics.plg"
+  support="https://forums.unraid.net/profile/244077-edacerton/"
+  min="6.11.5"
+>
+
+<CHANGES>
+<![CDATA[
+###2024.09.12###
+- Initial release
+
+For older releases, see https://github.com/dkaser/unraid-plugin-diagnostics/releases
+]]>
+</CHANGES>
+
+<FILE Name="/boot/config/plugins/plugin-diagnostics/unraid-plugin-diagnostics-1.6.0-noarch-1.txz">
+<URL>https://github.com/dkaser/unraid-plugin-diagnostics/releases/download/1.6.0/unraid-plugin-diagnostics-1.6.0-noarch-1.txz</URL>
+<SHA256>8502a1e4406a7167a70f6c4968ad8d64aaadfb2b33a5383ed5ade07f8a93341c</SHA256>
+</FILE>
+
+<!--
+The 'install' script.
+-->
+<FILE Run="/bin/bash">
+<INLINE>
+<![CDATA[
+upgradepkg --install-new /boot/config/plugins/plugin-diagnostics/unraid-plugin-diagnostics-1.6.0-noarch-1.txz
+
+# cleanup old versions
+rm -f $(ls /boot/config/plugins/plugin-diagnostics/unraid-plugin-diagnostics-*.txz 2>/dev/null | grep -v '1.6.0')
+
+echo ""
+echo "----------------------------------------------------"
+echo " plugin-diagnostics has been installed."
+echo " Version: 2024.09.12"
+echo "----------------------------------------------------"
+echo ""
+]]>
+</INLINE>
+</FILE>
+
+<!--
+The 'remove' script.
+-->
+<FILE Run="/bin/bash" Method="remove">
+<INLINE>
+<![CDATA[
+removepkg unraid-plugin-diagnostics-1.6.0
+
+rm -rf /usr/local/emhttp/plugins/plugin-diagnostics
+rm -rf /boot/config/plugins/plugin-diagnostics
+]]>
+</INLINE>
+</FILE>
+
+</PLUGIN>
