@@ -8,6 +8,7 @@
   pluginURL="https://raw.githubusercontent.com/dkaser/unraid-plugin-diagnostics/main/plugin/plugin-diagnostics.plg"
   support="https://forums.unraid.net/profile/244077-edacerton/"
   min="6.11.5"
+  icon="fa-wrench"
 >
 
 <CHANGES>
