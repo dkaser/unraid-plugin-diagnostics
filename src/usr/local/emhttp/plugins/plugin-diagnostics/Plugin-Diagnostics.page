@@ -25,4 +25,8 @@ foreach (glob("{$path[0]}*{$path[1]}") as $file) {
 foreach($plugins as $key => $value) {
     echo("<p><input type='button' value='{$value->title}' onclick=\"window.open('/plugins/plugin-diagnostics/download.php?plugin={$key}','_blank')\" /></p>");
 }
+
+if(!$plugins) {
+    echo("<p>No plugins are installed that use Plugin Diagnostics.</p>");
+}
 ?>
