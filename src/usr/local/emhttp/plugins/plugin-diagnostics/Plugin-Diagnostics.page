@@ -8,11 +8,11 @@ Title="Plugin Diagnostics"
 $path = ['/usr/local/emhttp/plugins/','/diagnostics.json'];
 $plugins = array();
 
-foreach (glob("{$path[0]}*{$path[1]}") as $file) {
+foreach (glob("{$path[0]}*{$path[1]}") ?: array() as $file) {
     $name = str_replace($path, "", $file);
 
     try {
-        $data = json_decode(file_get_contents($file), false);
+        $data = (object) json_decode(file_get_contents($file) ?: "{}", false);
         $good = true;
 
         if(!isset($data->title)) { $good = false; }

@@ -7,19 +7,25 @@ require_once "{$docroot}/plugins/plugin-diagnostics/include/sanitize.php";
 $pluginName = isset($diag_plugin_name) ? $diag_plugin_name : $_GET['plugin'];
 
 $configFile = realpath("{$docroot}/plugins/{$pluginName}/diagnostics.json");
-if ( ! str_starts_with($configFile, "{$docroot}/plugins/")) {
+if ( ! $configFile || ! str_starts_with($configFile, "{$docroot}/plugins/")) {
     echo "Bad Request";
     exit;
 }
 
-$config    = json_decode(file_get_contents($configFile), true);
+$configContents = file_get_contents($configFile);
+if ( ! $configContents) {
+    echo "Could not read configuration file.";
+    exit;
+}
+
+$config    = (array) json_decode($configContents, true);
 $timestamp = date("Ymd-His");
 $filename  = gethostname() . "-{$pluginName}-diag-{$timestamp}";
 
-if(http_response_code()) {
-    $diagnosticsFile       = "/tmp/{$filename}.zip";
+if (http_response_code()) {
+    $diagnosticsFile = "/tmp/{$filename}.zip";
 } else {
-    $diagnosticsFile       = "/boot/logs/{$filename}.zip";
+    $diagnosticsFile = "/boot/logs/{$filename}.zip";
 }
 $diagnosticsFolder     = "/tmp/{$filename}";
 $systemDiagnosticsFile = "{$diagnosticsFolder}/system-diagnostics.zip";
@@ -41,7 +47,7 @@ if (array_key_exists("commands", $config)) {
         $commandFilters = array_key_exists("filters", $command) ? $command["filters"] : array();
 
         file_put_contents("{$diagnosticsFolder}/commands/{$command['file']}", shell_exec($command["command"]));
-        sanitizeFile("{$diagnosticsFolder}/commands/{$command['file']}", array_merge($commandFilters,$customFilters));
+        sanitizeFile("{$diagnosticsFolder}/commands/{$command['file']}", array_merge($commandFilters, $customFilters));
     }
 }
 
@@ -51,14 +57,14 @@ if (array_key_exists("files", $config)) {
     foreach ($config["files"] as $fileobj) {
         $fileFilters = array();
 
-        if(is_array($fileobj)) {
-            $fileglob = $fileobj['file'];
+        if (is_array($fileobj)) {
+            $fileglob    = $fileobj['file'];
             $fileFilters = isset($fileobj['filters']) ? $fileobj['filters'] : array();
         } else {
             $fileglob = $fileobj;
         }
 
-        foreach (glob($fileglob) as $file) {
+        foreach (glob($fileglob) ?: array() as $file) {
             $destFile = "{$diagnosticsFolder}/files{$file}";
             if ( ! is_dir(dirname($destFile))) {
                 mkdir(dirname($destFile), 0755, true);
