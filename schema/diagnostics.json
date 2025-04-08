@@ -1,0 +1,116 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "https://github.com/dkaser/unraid-plugin-diagnostics/blob/main/schema/diagnostics.json",
+    "type": "object",
+    "title": "Plugin Diagnostics configuration",
+    "required": [
+        "title"
+    ],
+    "properties": {
+        "title": {
+            "type": "string",
+            "title": "Name to display in WebGUI"
+        },
+        "filters": {
+            "type": "array",
+            "title": "sed substitutions to be applied to all output",
+            "items": {
+                "type": "string"
+            }
+        },
+        "commands": {
+            "type": "array",
+            "title": "Commands to collect diagnostic data",
+            "items": {
+                "type": "object",
+                "title": "Command",
+                "required": [
+                    "command",
+                    "file"
+                ],
+                "properties": {
+                    "command": {
+                        "type": "string",
+                        "title": "Shell command to execute"
+                    },
+                    "file": {
+                        "type": "string",
+                        "title": "Filename for command output"
+                    },
+                    "filters": {
+                        "type": "array",
+                        "title": "sed substitutions to be applied to command output",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "files": {
+            "type": "array",
+            "title": "Files to collect",
+            "items": {
+                "anyOf": [{
+                    "type": "string",
+                    "title": "Filename to collect"
+                },
+                {
+                    "type": "object",
+                    "title": "File to collect",
+                    "required": [
+                        "file"
+                    ],
+                    "properties": {
+                        "file": {
+                            "type": "string",
+                            "title": "Filename to collect"
+                        },
+                        "filters": {
+                            "type": "array",
+                            "title": "sed substitutions to be applied to file",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }]
+            }
+        },
+        "system_diagnostics": {
+            "type": "boolean",
+            "default": false,
+            "title": "Include Unraid system diagnostics"
+        }
+    },
+    "examples": [{
+        "title": "My Plugin",
+        "filters": [
+            "s/find/replace/g"
+        ],
+        "commands": [{
+            "command": "lsblk",
+            "file": "lsblk.txt"
+        },
+        {
+            "command": "zfs list",
+            "file": "zfs.txt",
+            "filters": [
+                "s/^(.)(\\S*)/\\1zzz/g"
+            ]
+        }],
+        "files": [
+            "/etc/ssh/sshd_config",
+            {
+                "file": "/etc/samba/smb-shares.conf",
+                "filters": [
+                    "s/\\[.*\\]/\\[Share\\]/g",
+                    "s/path = \\S*/path = path/g",
+                    "s/list = \\S*/list = list/g",
+                    "s/users = \\S*/users = users/g"
+                ]
+            }
+        ],
+        "system_diagnostics": true
+    }]
+}
