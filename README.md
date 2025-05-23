@@ -48,6 +48,21 @@ Optional substitution filters may be included for all output (except for system 
             ]
         }
     ],
-    "system_diagnostics": true
+    "system_diagnostics": true,
+    "upload": "https://diagnostics-upload.developer.net/"
 }
 ```
+
+## Diagnostics Uploads
+
+The `upload` option allows users to upload diagnostic packages to the provided server. When a user uploads diagnostics:
+
+1. Plugin Diagnostics makes a GET request to `{upload}?connect`:
+   - The response will be used as the authorization token for the POST request
+2. Plugin Diagnostics makes a POST request to `{upload}`:
+   - Authorization: `Bearer {response from GET request}`
+   - User-Agent: Starts with `plugin-diagnostics`
+   - Content-Type: `multipart/form-data`
+   - Diagnostic File: `diagFile`
+3. The diagnostics server should respond to the POST request with a unique identifier that the user can provide with their support request:
+   `{"id": "someValueHere" }`
