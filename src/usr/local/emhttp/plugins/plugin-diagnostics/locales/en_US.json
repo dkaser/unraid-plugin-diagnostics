@@ -4,5 +4,13 @@
     "plugin": "Plugin",
     "id": "Identifier",
     "download_desc": "Downloads the diagnostics file to your computer.",
-    "upload_desc": "Sends the diagnostics file to the plugin author. Once the file has been sent, an identifier will be displayed. Include the identifier when requesting support."
+    "upload_desc": "Sends the diagnostics file to the plugin author. Once the file has been sent, an identifier will be displayed. Include the identifier when requesting support.",
+    "yes": "Yes",
+    "no": "No",
+    "apply": "Apply",
+    "metrics": {
+        "metrics": "Usage Data",
+        "usage": "Allow Usage Data Collection",
+        "desc": "Allows collection of usage data. This sends an anonymized identifier, the current Unraid version, the current version of the plugin, and the enabled/disabled status of some features. No personal or network information is collected."
+    }
 }

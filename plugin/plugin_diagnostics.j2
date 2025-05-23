@@ -36,6 +36,8 @@ upgradepkg --install-new /boot/config/plugins/plugin-diagnostics/unraid-plugin-d
 # cleanup old versions
 rm -f $(ls /boot/config/plugins/plugin-diagnostics/unraid-plugin-diagnostics-*.txz 2>/dev/null | grep -v '{{ version }}')
 
+echo "VERSION={{ version }}" > /usr/local/emhttp/plugins/{{ name }}/version.ini
+
 echo ""
 echo "----------------------------------------------------"
 echo " plugin-diagnostics has been installed."
