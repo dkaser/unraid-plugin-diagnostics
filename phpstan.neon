@@ -1,7 +1,8 @@
 parameters:
-	level: max
+	level: 9
 	fileExtensions:
 		- php
 		- page
+		- inc
 	paths:
 		- src
