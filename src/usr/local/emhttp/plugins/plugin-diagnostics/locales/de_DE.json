@@ -1,0 +1,8 @@
+{
+    "download": "Herunterladen",
+    "upload": "Hochladen",
+    "plugin": "Plugin",
+    "id": "Bezeichner",
+    "download_desc": "Lädt die Diagnosedatei auf Ihren Computer herunter.",
+    "upload_desc": "Sendet die Diagnosedatei an den Plugin-Autor. Nach dem Senden der Datei wird ein Bezeichner angezeigt. Bitte geben Sie den Bezeichner an, wenn Sie Support anfordern."
+}

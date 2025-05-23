@@ -1,0 +1,8 @@
+{
+    "download": "Pobierz",
+    "upload": "Prześlij",
+    "plugin": "Wtyczka",
+    "id": "Identyfikator",
+    "download_desc": "Pobiera plik diagnostyczny na Twój komputer.",
+    "upload_desc": "Wysyła plik diagnostyczny do autora wtyczki. Po wysłaniu pliku zostanie wyświetlony identyfikator. Dołącz identyfikator podczas zgłaszania prośby o wsparcie."
+}

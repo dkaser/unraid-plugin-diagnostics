@@ -1,0 +1,8 @@
+{
+    "download": "Ladda ner",
+    "upload": "Ladda upp",
+    "plugin": "Plugin",
+    "id": "Identifierare",
+    "download_desc": "Laddar ner diagnostikfilen till din dator.",
+    "upload_desc": "Skickar diagnostikfilen till pluginförfattaren. När filen har skickats kommer en identifierare att visas. Ange identifieraren när du begär support."
+}

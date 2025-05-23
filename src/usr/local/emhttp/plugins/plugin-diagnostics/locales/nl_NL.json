@@ -1,0 +1,8 @@
+{
+    "download": "Downloaden",
+    "upload": "Uploaden",
+    "plugin": "Plugin",
+    "id": "Identificatiecode",
+    "download_desc": "Download het diagnostiekbestand naar uw computer.",
+    "upload_desc": "Verstuurt het diagnostiekbestand naar de pluginauteur. Zodra het bestand is verzonden, wordt er een identificatiecode weergegeven. Vermeld deze code bij het aanvragen van ondersteuning."
+}

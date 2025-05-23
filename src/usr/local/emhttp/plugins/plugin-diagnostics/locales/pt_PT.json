@@ -1,0 +1,8 @@
+{
+    "download": "Baixar",
+    "upload": "Enviar",
+    "plugin": "Plugin",
+    "id": "Identificador",
+    "download_desc": "Baixa o arquivo de diagnóstico para o seu computador.",
+    "upload_desc": "Envia o arquivo de diagnóstico para o autor do plugin. Uma vez enviado o arquivo, um identificador será exibido. Inclua o identificador ao solicitar suporte."
+}

@@ -1,0 +1,8 @@
+{
+    "download": "Last ned",
+    "upload": "Last opp",
+    "plugin": "Programtillegg",
+    "id": "Identifikator",
+    "download_desc": "Laster ned diagnosefilen til datamaskinen din.",
+    "upload_desc": "Sender diagnosefilen til programtilleggforfatteren. Når filen er sendt, vises en identifikator. Oppgi identifikatoren når du ber om støtte."
+}

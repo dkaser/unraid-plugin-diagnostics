@@ -1,0 +1,8 @@
+{
+    "download": "Télécharger",
+    "upload": "Téléverser",
+    "plugin": "Plugin",
+    "id": "Identifiant",
+    "download_desc": "Télécharge le fichier de diagnostic sur votre ordinateur.",
+    "upload_desc": "Envoie le fichier de diagnostic à l’auteur du plugin. Une fois le fichier envoyé, un identifiant s’affichera. Incluez cet identifiant lors de votre demande d’assistance."
+}
