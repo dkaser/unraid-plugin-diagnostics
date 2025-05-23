@@ -2,7 +2,6 @@ Menu="UNRAID-OS"
 Icon="fa-wrench"
 Title="Plugin Diagnostics"
 ---
-<p>Use the buttons below to download diagnostic information for the desired plugin.</p>
 <?php
 
 $path = ['/usr/local/emhttp/plugins/','/diagnostics.json'];
@@ -22,11 +21,41 @@ foreach (glob("{$path[0]}*{$path[1]}") ?: array() as $file) {
     } finally {}
 }
 
-foreach($plugins as $key => $value) {
-    echo("<p><input type='button' value='{$value->title}' onclick=\"window.open('/plugins/plugin-diagnostics/download.php?plugin={$key}','_blank')\" /></p>");
-}
-
-if(!$plugins) {
-    echo("<p>No plugins are installed that use Plugin Diagnostics.</p>");
-}
 ?>
+<table class="unraid t1">
+    <thead>
+        <tr>
+            <td style="width: 25%">Plugin</td>
+            <td style="width: 25%">&nbsp;</td>
+            <td style="width: 25%">&nbsp;</td>
+            <td>Upload ID</td>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($plugins as $key => $value) { ?>
+            <tr>
+                <td><?= $value->title ?></td>
+                <td><input type='button' value='Download' onclick="window.open('/plugins/plugin-diagnostics/download.php?plugin=<?= $key ?>','_blank')" /></td>
+                <td><input type='button' value='Upload' onclick='uploadDiagnostics("<?= $key ?>")' <?= isset($value->upload) ? "" : "disabled" ?> /></td>
+                <td><div id="status_<?= $key ?>"></div></td>
+            </tr>
+        <?php } ?>
+    </tbody>
+</table>
+
+<script>
+async function uploadDiagnostics(plugin) {
+    $('div.spinner.fixed').show('fast');
+
+    var res = await $.post('/plugins/plugin-diagnostics/upload.php',{plugin: plugin});
+
+    const response = JSON.parse(res);
+
+    if (typeof response == "object") {
+        $(`div[id="status_${plugin}"]`).html(response.id);
+    } else {
+        $(`div[id="status_${plugin}"]`).html(res);
+    }
+    $('div.spinner.fixed').hide('fast');
+}
+</script>
