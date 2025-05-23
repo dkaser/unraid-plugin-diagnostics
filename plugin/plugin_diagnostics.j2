@@ -4,7 +4,7 @@
 <PLUGIN 
   name="plugin-diagnostics"
   author="Derek Kaser"
-  version="{{ version }}"
+  version="{{ env['PLUGIN_VERSION'] }}"
   pluginURL="https://raw.githubusercontent.com/dkaser/unraid-plugin-diagnostics/main/plugin/plugin-diagnostics.plg"
   support="https://forums.unraid.net/topic/174968-support-plugin-diagnostics/"
   min="6.11.5"
@@ -13,16 +13,16 @@
 
 <CHANGES>
 <![CDATA[
-###{{ version }}###
-{{ changelog }}
+###{{ env['PLUGIN_VERSION'] }}###
+{{ env['PLUGIN_CHANGELOG'] }}
 
 For older releases, see https://github.com/dkaser/unraid-plugin-diagnostics/releases
 ]]>
 </CHANGES>
 
-<FILE Name="/boot/config/plugins/plugin-diagnostics/unraid-plugin-diagnostics-{{ version }}-noarch-1.txz">
-<URL>https://github.com/dkaser/unraid-plugin-diagnostics/releases/download/{{ version }}/unraid-plugin-diagnostics-{{ version }}-noarch-1.txz</URL>
-<SHA256>{{ checksum }}</SHA256>
+<FILE Name="/boot/config/plugins/plugin-diagnostics/unraid-plugin-diagnostics-{{ env['PLUGIN_VERSION'] }}-noarch-1.txz">
+<URL>https://github.com/dkaser/unraid-plugin-diagnostics/releases/download/{{ env['PLUGIN_VERSION'] }}/unraid-plugin-diagnostics-{{ env['PLUGIN_VERSION'] }}-noarch-1.txz</URL>
+<SHA256>{{ env['PLUGIN_CHECKSUM'] }}</SHA256>
 </FILE>
 
 <!--
@@ -31,17 +31,17 @@ The 'install' script.
 <FILE Run="/bin/bash">
 <INLINE>
 <![CDATA[
-upgradepkg --install-new /boot/config/plugins/plugin-diagnostics/unraid-plugin-diagnostics-{{ version }}-noarch-1.txz
+upgradepkg --install-new /boot/config/plugins/plugin-diagnostics/unraid-plugin-diagnostics-{{ env['PLUGIN_VERSION'] }}-noarch-1.txz
 
 # cleanup old versions
-rm -f $(ls /boot/config/plugins/plugin-diagnostics/unraid-plugin-diagnostics-*.txz 2>/dev/null | grep -v '{{ version }}')
+rm -f $(ls /boot/config/plugins/plugin-diagnostics/unraid-plugin-diagnostics-*.txz 2>/dev/null | grep -v '{{ env['PLUGIN_VERSION'] }}')
 
-echo "VERSION={{ version }}" > /usr/local/emhttp/plugins/{{ name }}/version.ini
+echo "VERSION={{ env['PLUGIN_VERSION'] }}" > /usr/local/emhttp/plugins/plugin-diagnostics/version.ini
 
 echo ""
 echo "----------------------------------------------------"
 echo " plugin-diagnostics has been installed."
-echo " Version: {{ version }}"
+echo " Version: {{ env['PLUGIN_VERSION'] }}"
 echo "----------------------------------------------------"
 echo ""
 ]]>
