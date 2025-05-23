@@ -1,61 +1,32 @@
 Menu="UNRAID-OS"
 Icon="fa-wrench"
 Title="Plugin Diagnostics"
+Markdown="false"
 ---
 <?php
 
-$path = ['/usr/local/emhttp/plugins/','/diagnostics.json'];
-$plugins = array();
+/*
+    Copyright (C) 2025  Derek Kaser
 
-foreach (glob("{$path[0]}*{$path[1]}") ?: array() as $file) {
-    $name = str_replace($path, "", $file);
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-    try {
-        $data = (object) json_decode(file_get_contents($file) ?: "{}", false);
-        $good = true;
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
 
-        if(!isset($data->title)) { $good = false; }
-        if(preg_match('/[^a-zA-Z0-9 ]/', $data->title) > 0) { $good = false; }
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
 
-        if ($good) { $plugins[$name] = $data; }
-    } finally {}
+try {
+    $docroot = $docroot ?? $_SERVER['DOCUMENT_ROOT'] ?: '/usr/local/emhttp';
+    require_once "{$docroot}/plugins/plugin-diagnostics/include/page.php";
+
+    echo PluginDiagnostics\getPage("Main");
+} catch (Throwable $e) {
+    echo "An error occurred: <pre>" . print_r($e, true) . "</pre>";
 }
-
-?>
-<table class="unraid t1">
-    <thead>
-        <tr>
-            <td style="width: 25%">Plugin</td>
-            <td style="width: 25%">&nbsp;</td>
-            <td style="width: 25%">&nbsp;</td>
-            <td>Upload ID</td>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach($plugins as $key => $value) { ?>
-            <tr>
-                <td><?= $value->title ?></td>
-                <td><input type='button' value='Download' onclick="window.open('/plugins/plugin-diagnostics/download.php?plugin=<?= $key ?>','_blank')" /></td>
-                <td><input type='button' value='Upload' onclick='uploadDiagnostics("<?= $key ?>")' <?= isset($value->upload) ? "" : "disabled" ?> /></td>
-                <td><div id="status_<?= $key ?>"></div></td>
-            </tr>
-        <?php } ?>
-    </tbody>
-</table>
-
-<script>
-async function uploadDiagnostics(plugin) {
-    $('div.spinner.fixed').show('fast');
-
-    var res = await $.post('/plugins/plugin-diagnostics/upload.php',{plugin: plugin});
-
-    const response = JSON.parse(res);
-
-    if (typeof response == "object") {
-        $(`div[id="status_${plugin}"]`).html(response.id);
-    } else {
-        $(`div[id="status_${plugin}"]`).html(res);
-    }
-    $('div.spinner.fixed').hide('fast');
-}
-</script>

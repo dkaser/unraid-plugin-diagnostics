@@ -53,6 +53,9 @@ class Diagnostics
         mkdir($diagnosticsFolder, 0755);
 
         $customFilters = (array_key_exists("filters", $config)) ? $config["filters"] : array();
+        if ( ! is_array($customFilters)) {
+            throw new \InvalidArgumentException("Invalid filters");
+        }
 
         // Add system diagnostics
         if (array_key_exists("system_diagnostics", $config) ? $config["system_diagnostics"] : false) {
@@ -80,6 +83,9 @@ class Diagnostics
                 if (is_array($fileobj)) {
                     $fileglob    = $fileobj['file'];
                     $fileFilters = isset($fileobj['filters']) ? $fileobj['filters'] : array();
+                    if ( ! is_array($fileFilters)) {
+                        throw new \InvalidArgumentException("Invalid filters");
+                    }
                 } else {
                     $fileglob = $fileobj;
                 }

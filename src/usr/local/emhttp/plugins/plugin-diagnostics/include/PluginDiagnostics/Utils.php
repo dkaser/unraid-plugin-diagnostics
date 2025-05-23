@@ -93,7 +93,7 @@ class Utils
     }
 
     /**
-     * @param array<string> $customFilters
+     * @param array<mixed> $customFilters
      */
     public static function sanitizeFile(string $file, array $customFilters = array()): void
     {
@@ -107,6 +107,10 @@ class Utils
         $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
         foreach ($filters as $filter) {
+            if ( ! is_string($filter) || empty($filter)) {
+                throw new \InvalidArgumentException("Invalid filter");
+            }
+
             switch ($ext) {
                 case "gz":
                     copy($file, "{$file}~");

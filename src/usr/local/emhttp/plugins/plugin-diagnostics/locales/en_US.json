@@ -1,0 +1,8 @@
+{
+    "download": "Download",
+    "upload": "Upload",
+    "plugin": "Plugin",
+    "id": "Identifier",
+    "download_desc": "Downloads the diagnostics file to your computer.",
+    "upload_desc": "Sends the diagnostics file to the plugin author. Once the file has been sent, an identifier will be displayed. Include the identifier when requesting support."
+}
