@@ -4,7 +4,7 @@
 <PLUGIN 
   name="plugin-diagnostics"
   author="Derek Kaser"
-  version="2024.09.13"
+  version="2025.05.23"
   pluginURL="https://raw.githubusercontent.com/dkaser/unraid-plugin-diagnostics/main/plugin/plugin-diagnostics.plg"
   support="https://forums.unraid.net/topic/174968-support-plugin-diagnostics/"
   min="6.11.5"
@@ -13,19 +13,19 @@
 
 <CHANGES>
 <![CDATA[
-###2024.09.13###
-- Allow plugins to define custom filters
-
-###2024.09.12###
-- Initial release
+###2025.05.23###
+- Add option to send diagnostics directly to plugin developers
+- Add localization
+- Update static analysis tooling
+- Add metrics
 
 For older releases, see https://github.com/dkaser/unraid-plugin-diagnostics/releases
 ]]>
 </CHANGES>
 
-<FILE Name="/boot/config/plugins/plugin-diagnostics/unraid-plugin-diagnostics-2.1.0-noarch-1.txz">
-<URL>https://github.com/dkaser/unraid-plugin-diagnostics/releases/download/2.1.0/unraid-plugin-diagnostics-2.1.0-noarch-1.txz</URL>
-<SHA256>adea6a8dccf8cac4eb109f1c348d1e483597c08fc359ba2f821ce0027f6481c1</SHA256>
+<FILE Name="/boot/config/plugins/plugin-diagnostics/unraid-plugin-diagnostics-2025.05.23-noarch-1.txz">
+<URL>https://github.com/dkaser/unraid-plugin-diagnostics/releases/download/2025.05.23/unraid-plugin-diagnostics-2025.05.23-noarch-1.txz</URL>
+<SHA256>2bc246c66d302eb3d5ffc0c474ea27db1ae59ca178ec52187408b3649b1b90b6</SHA256>
 </FILE>
 
 <!--
@@ -34,15 +34,17 @@ The 'install' script.
 <FILE Run="/bin/bash">
 <INLINE>
 <![CDATA[
-upgradepkg --install-new /boot/config/plugins/plugin-diagnostics/unraid-plugin-diagnostics-2.1.0-noarch-1.txz
+upgradepkg --install-new /boot/config/plugins/plugin-diagnostics/unraid-plugin-diagnostics-2025.05.23-noarch-1.txz
 
 # cleanup old versions
-rm -f $(ls /boot/config/plugins/plugin-diagnostics/unraid-plugin-diagnostics-*.txz 2>/dev/null | grep -v '2.1.0')
+rm -f $(ls /boot/config/plugins/plugin-diagnostics/unraid-plugin-diagnostics-*.txz 2>/dev/null | grep -v '2025.05.23')
+
+echo "VERSION=2025.05.23" > /usr/local/emhttp/plugins/plugin-diagnostics/version.ini
 
 echo ""
 echo "----------------------------------------------------"
 echo " plugin-diagnostics has been installed."
-echo " Version: 2024.09.13"
+echo " Version: 2025.05.23"
 echo "----------------------------------------------------"
 echo ""
 ]]>
