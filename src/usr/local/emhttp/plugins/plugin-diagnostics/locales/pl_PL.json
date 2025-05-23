@@ -4,5 +4,13 @@
     "plugin": "Wtyczka",
     "id": "Identyfikator",
     "download_desc": "Pobiera plik diagnostyczny na Twój komputer.",
-    "upload_desc": "Wysyła plik diagnostyczny do autora wtyczki. Po wysłaniu pliku zostanie wyświetlony identyfikator. Dołącz identyfikator podczas zgłaszania prośby o wsparcie."
+    "upload_desc": "Wysyła plik diagnostyczny do autora wtyczki. Po wysłaniu pliku zostanie wyświetlony identyfikator. Dołącz identyfikator podczas zgłaszania prośby o wsparcie.",
+    "yes": "Tak",
+    "no": "Nie",
+    "apply": "Zastosuj",
+    "metrics": {
+        "metrics": "Dane dotyczące użycia",
+        "usage": "Zezwól na zbieranie danych o użytkowaniu",
+        "desc": "Pozwala na zbieranie danych dotyczących użycia. Wysyłany jest zanonimizowany identyfikator, aktualna wersja Unraid, aktualna wersja wtyczki oraz status włączenia/wyłączenia niektórych funkcji. Nie są zbierane żadne informacje osobiste ani dotyczące sieci."
+    }
 }

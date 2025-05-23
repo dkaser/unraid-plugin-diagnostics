@@ -4,5 +4,13 @@
     "plugin": "Plugin",
     "id": "Identificatiecode",
     "download_desc": "Download het diagnostiekbestand naar uw computer.",
-    "upload_desc": "Verstuurt het diagnostiekbestand naar de pluginauteur. Zodra het bestand is verzonden, wordt er een identificatiecode weergegeven. Vermeld deze code bij het aanvragen van ondersteuning."
+    "upload_desc": "Verstuurt het diagnostiekbestand naar de pluginauteur. Zodra het bestand is verzonden, wordt er een identificatiecode weergegeven. Vermeld deze code bij het aanvragen van ondersteuning.",
+    "yes": "Ja",
+    "no": "Nee",
+    "apply": "Toepassen",
+    "metrics": {
+        "metrics": "Gebruiksgegevens",
+        "usage": "Verzamelen van verbruiksgegevens toestaan",
+        "desc": "Staat het verzamelen van gebruiksgegevens toe. Dit stuurt een geanonimiseerde identificatie, de huidige Unraid-versie, de huidige versie van de plugin en de in- of uitgeschakelde status van enkele functies. Er worden geen persoonlijke of netwerkgegevens verzameld."
+    }
 }

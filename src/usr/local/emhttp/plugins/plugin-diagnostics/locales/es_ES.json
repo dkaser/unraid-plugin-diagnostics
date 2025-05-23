@@ -4,5 +4,13 @@
     "plugin": "Plugin",
     "id": "Identificador",
     "download_desc": "Descarga el archivo de diagnósticos en tu computadora.",
-    "upload_desc": "Envía el archivo de diagnósticos al autor del plugin. Una vez enviado el archivo, se mostrará un identificador. Incluye el identificador al solicitar soporte."
+    "upload_desc": "Envía el archivo de diagnósticos al autor del plugin. Una vez enviado el archivo, se mostrará un identificador. Incluye el identificador al solicitar soporte.",
+    "yes": "Sí",
+    "no": "No",
+    "apply": "Aplicar",
+    "metrics": {
+        "metrics": "Datos de uso",
+        "usage": "Permitir recolección de datos de uso",
+        "desc": "Permite la recolección de datos de uso. Esto envía un identificador anónimo, la versión actual de Unraid, la versión actual del plugin y el estado habilitado/desactivado de algunas características. No se recopila información personal ni de red."
+    }
 }

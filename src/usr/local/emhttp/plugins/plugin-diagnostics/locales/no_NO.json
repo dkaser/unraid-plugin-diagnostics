@@ -4,5 +4,13 @@
     "plugin": "Programtillegg",
     "id": "Identifikator",
     "download_desc": "Laster ned diagnosefilen til datamaskinen din.",
-    "upload_desc": "Sender diagnosefilen til programtilleggforfatteren. Når filen er sendt, vises en identifikator. Oppgi identifikatoren når du ber om støtte."
+    "upload_desc": "Sender diagnosefilen til programtilleggforfatteren. Når filen er sendt, vises en identifikator. Oppgi identifikatoren når du ber om støtte.",
+    "yes": "Ja",
+    "no": "Nei",
+    "apply": "Bruk",
+    "metrics": {
+        "metrics": "Bruksdata",
+        "usage": "Tillat innsamling av bruksdata",
+        "desc": "Tillater innsamling av bruksdata. Dette sender en anonymisert identifikator, nåværende Unraid-versjon, nåværende versjon av pluginet, og aktivert/deaktivert-status for noen funksjoner. Ingen personlig eller nettverksinformasjon innhentes."
+    }
 }
