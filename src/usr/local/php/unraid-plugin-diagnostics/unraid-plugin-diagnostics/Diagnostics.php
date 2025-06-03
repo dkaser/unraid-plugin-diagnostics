@@ -1,6 +1,6 @@
 <?php
 
-namespace PluginDiagnostics;
+namespace EDACerton\PluginDiagnostics;
 
 /*
     Copyright (C) 2025  Derek Kaser

@@ -1,6 +1,6 @@
 <?php
 
-namespace PluginDiagnostics;
+namespace EDACerton\PluginDiagnostics;
 
 /*
     Copyright (C) 2025  Derek Kaser
@@ -19,41 +19,8 @@ namespace PluginDiagnostics;
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-class Utils
+class Utils extends \EDACerton\PluginUtils\Utils
 {
-    public static function make_option(bool|string $selected, string $value, string $text, string $extra = ""): string
-    {
-        if (is_string($selected)) {
-            $selected = $selected === $value;
-        }
-
-        return "<option value='{$value}'" . ($selected ? " selected" : "") . (strlen($extra) ? " {$extra}" : "") . ">{$text}</option>";
-    }
-
-    public static function logmsg(string $message): void
-    {
-        if ( ! defined(__NAMESPACE__ . "\PLUGIN_NAME")) {
-            throw new \RuntimeException("PLUGIN_NAME not defined");
-        }
-
-        $timestamp = date('Y/m/d H:i:s');
-        $filename  = basename(is_string($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : "");
-        file_put_contents("/var/log/" . PLUGIN_NAME . ".log", "{$timestamp} {$filename}: {$message}" . PHP_EOL, FILE_APPEND);
-    }
-
-    /**
-    * @param array<mixed> $args
-    */
-    public static function run_task(string $functionName, array $args = array()): void
-    {
-        try {
-            $reflectionMethod = new \ReflectionMethod($functionName);
-            $reflectionMethod->invokeArgs(null, $args);
-        } catch (\Throwable $e) {
-            Utils::logmsg("Caught exception in {$functionName} : " . $e->getMessage());
-        }
-    }
-
     public static function send_file(string $url, string $file): string
     {
         if (empty($url)) {

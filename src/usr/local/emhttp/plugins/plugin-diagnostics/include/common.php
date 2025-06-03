@@ -1,6 +1,6 @@
 <?php
 
-namespace PluginDiagnostics;
+namespace EDACerton\PluginDiagnostics;
 
 /*
     Copyright (C) 2025  Derek Kaser
@@ -22,10 +22,5 @@ namespace PluginDiagnostics;
 define(__NAMESPACE__ . "\PLUGIN_ROOT", dirname(dirname(__FILE__)));
 define(__NAMESPACE__ . "\PLUGIN_NAME", "plugin-diagnostics");
 
-foreach (glob(PLUGIN_ROOT . "/include/" . __NAMESPACE__ . "/*.php") ?: array() as $file) {
-    try {
-        require $file;
-    } catch (\Throwable $e) {
-        Utils::logmsg("Caught exception in {$file} : " . $e->getMessage());
-    }
-}
+// @phpstan-ignore requireOnce.fileNotFound
+require_once "/usr/local/php/unraid-plugin-diagnostics/vendor/autoload.php";
