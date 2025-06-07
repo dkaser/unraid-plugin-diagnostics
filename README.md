@@ -1,5 +1,12 @@
 # unraid-plugin-diagnostics
 
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+[![GitHub Releases](https://img.shields.io/github/v/release/unraid/unraid-plugin-diagnostics)](https://github.com/dkaser/unraid-plugin-diagnostics/releases)
+[![Last Commit](https://img.shields.io/github/last-commit/dkaser/unraid-plugin-diagnostics)](https://github.com/dkaser/unraid-plugin-diagnostics/commits/main/)
+[![Code Style: PHP-CS-Fixer](https://img.shields.io/badge/code%20style-php--cs--fixer-brightgreen.svg)](https://github.com/FriendsOfPHP/PHP-CS-Fixer)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/dkaser/unraid-plugin-diagnostics/total)
+![GitHub Downloads (all assets, latest release)](https://img.shields.io/github/downloads/dkaser/unraid-plugin-diagnostics/latest/total)
+
 ## Usage
 
 Plugin diagnostics can be invoked either via CLI or WebGUI.
