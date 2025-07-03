@@ -7,5 +7,13 @@
     "upload_desc": "Sends the diagnostics file to the plugin author. Once the file has been sent, an identifier will be displayed. Include the identifier when requesting support.",
     "yes": "Yes",
     "no": "No",
-    "apply": "Apply"
+    "apply": "Apply",
+    "diag_success": "Diagnostics uploaded successfully. ID:",
+    "upload_success": "Upload Successful",
+    "upload_prompt": "Your diagnostics will be uploaded to the following site for analysis. Are you sure you want to continue?",
+    "send_diagnostics": "Send Diagnostics",
+    "cancel": "Cancel",
+    "upload_error": "Upload Error",
+    "upload_error_msg": "An error occurred while uploading diagnostics. Please try again later.",
+    "close": "Close"
 }

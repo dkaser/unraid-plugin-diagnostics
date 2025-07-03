@@ -8,10 +8,12 @@
     "yes": "Oui",
     "no": "Non",
     "apply": "Appliquer",
-    "metrics": {
-        "metrics": "Données d'utilisation",
-        "usage": "Autoriser la collecte des données d'utilisation",
-        "desc": "Permet la collecte de données d'utilisation. Cela envoie un identifiant anonyme, la version actuelle d'Unraid, la version actuelle du plugin, et l'état activé/désactivé de certaines fonctionnalités. Aucune information personnelle ou réseau n'est recueillie.",
-        "modal": "Ce plugin partage des informations de base, comme la version du plugin et la version d'Unraid, avec le développeur pour aider à améliorer les futures mises à jour. Aucune donnée personnelle n'est collectée. Veuillez cliquer sur Accepter pour autoriser ceci ou Refuser pour désactiver."
-    }
+    "diag_success": "Diagnostics téléchargés avec succès. ID&nbsp;:",
+    "upload_success": "Téléversement réussi",
+    "upload_prompt": "Vos diagnostics seront téléversés sur le site suivant pour analyse. Êtes-vous sûr de vouloir continuer ?",
+    "send_diagnostics": "Envoyer les diagnostics",
+    "cancel": "Annuler",
+    "upload_error": "Erreur de téléchargement",
+    "upload_error_msg": "Une erreur s'est produite lors du téléchargement des diagnostics. Veuillez réessayer plus tard.",
+    "close": "Fermer"
 }

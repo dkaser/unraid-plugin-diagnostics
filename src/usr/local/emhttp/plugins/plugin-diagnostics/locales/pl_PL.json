@@ -8,10 +8,12 @@
     "yes": "Tak",
     "no": "Nie",
     "apply": "Zastosuj",
-    "metrics": {
-        "metrics": "Dane dotyczące użycia",
-        "usage": "Zezwól na zbieranie danych o użytkowaniu",
-        "desc": "Pozwala na zbieranie danych dotyczących użycia. Wysyłany jest zanonimizowany identyfikator, aktualna wersja Unraid, aktualna wersja wtyczki oraz status włączenia/wyłączenia niektórych funkcji. Nie są zbierane żadne informacje osobiste ani dotyczące sieci.",
-        "modal": "Ta wtyczka udostępnia podstawowe informacje, takie jak wersja wtyczki oraz Unraid, deweloperowi w celu ulepszania przyszłych aktualizacji. Nie gromadzi żadnych danych osobowych. Prosimy kliknąć Zgadzam się, aby wyrazić na to zgodę, lub Odrzuć, aby wyłączyć."
-    }
+    "diag_success": "Diagnostyka została pomyślnie przesłana. ID:",
+    "upload_success": "Przesyłanie zakończone sukcesem",
+    "upload_prompt": "Twoje dane diagnostyczne zostaną przesłane na poniższą stronę do analizy. Czy na pewno chcesz kontynuować?",
+    "send_diagnostics": "Wyślij diagnostykę",
+    "cancel": "Anuluj",
+    "upload_error": "Błąd przesyłania",
+    "upload_error_msg": "Wystąpił błąd podczas przesyłania diagnostyki. Spróbuj ponownie później.",
+    "close": "Zamknij"
 }

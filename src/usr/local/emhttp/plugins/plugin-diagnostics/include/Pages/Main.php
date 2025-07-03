@@ -35,6 +35,9 @@ foreach (glob("{$path[0]}*{$path[1]}") ?: array() as $file) {
 }
 
 ?>
+
+<script src="/plugins/plugin-diagnostics/assets/sweetalert2.all.min.js"></script>
+
 <table class="unraid t1">
     <thead>
         <tr>
@@ -49,7 +52,7 @@ foreach (glob("{$path[0]}*{$path[1]}") ?: array() as $file) {
             <tr>
                 <td><?= $value->title; ?></td>
                 <td><input type='button' value='<?= $tr->tr("download"); ?>' onclick="window.open('/plugins/plugin-diagnostics/download.php?plugin=<?= $key; ?>','_blank')" /></td>
-                <td><input type='button' value='<?= $tr->tr("upload"); ?>' onclick='uploadDiagnostics("<?= $key; ?>")' <?= isset($value->upload) ? "" : "disabled"; ?> /></td>
+                <td><input type='button' value='<?= $tr->tr("upload"); ?>' onclick='uploadDiagnostics("<?= $key; ?>", "<?= isset($value->upload) ? htmlspecialchars($value->upload) : ""; ?>")' <?= isset($value->upload) ? "" : "disabled"; ?> /></td>
                 <td><div id="status_<?= $key; ?>"></div></td>
             </tr>
         <?php } ?>
@@ -62,20 +65,52 @@ foreach (glob("{$path[0]}*{$path[1]}") ?: array() as $file) {
 </ul>
 
 <script>
-async function uploadDiagnostics(plugin) {
+async function uploadDiagnostics(plugin, url) {
+    const promptResult = await Swal.fire({
+                title: '<?= $tr->tr("send_diagnostics"); ?>',
+                html: `<?= $tr->tr("upload_prompt"); ?> <br><br>${url}`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: '<?= $tr->tr("send_diagnostics"); ?>',
+                cancelButtonText: '<?= $tr->tr("cancel"); ?>',
+            });
+
+    if (!promptResult.isConfirmed) {
+        console.log("User cancelled the upload.");
+        return;
+    }
+
     $('div.spinner.fixed').show('fast');
 
-    var res = await $.post('/plugins/plugin-diagnostics/upload.php',{plugin: plugin});
+    try {
+        var res = await $.post('/plugins/plugin-diagnostics/upload.php', {plugin: plugin});
+        const response = JSON.parse(res);
 
-    const response = JSON.parse(res);
-
-    if (typeof response == "object") {
         $(`div[id="status_${plugin}"]`).html(response.id);
-    } else {
-        $(`div[id="status_${plugin}"]`).html(res);
+        $('div.spinner.fixed').hide('fast');
+        await Swal.fire({
+            title: '<?= $tr->tr("upload_success"); ?>',
+            text: `<?= $tr->tr("diag_success"); ?> ${response.id}`,
+            icon: 'success',
+            confirmButtonText: '<?= $tr->tr("close"); ?>'
+        });
+    } catch (error) {
+        $('div.spinner.fixed').hide('fast');
+        await Swal.fire({
+            title: '<?= $tr->tr("upload_error"); ?>',
+            text: '<?= $tr->tr("upload_error_msg"); ?>',
+            icon: 'error',
+            confirmButtonText: '<?= $tr->tr("close"); ?>'
+        });
+        console.error("Upload error:", error);
     }
-    $('div.spinner.fixed').hide('fast');
 }
 </script>
+
+<script>
+
+</script>
+
+
 
 </div>

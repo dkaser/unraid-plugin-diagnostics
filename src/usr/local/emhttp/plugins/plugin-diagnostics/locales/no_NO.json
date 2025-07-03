@@ -8,10 +8,12 @@
     "yes": "Ja",
     "no": "Nei",
     "apply": "Bruk",
-    "metrics": {
-        "metrics": "Bruksdata",
-        "usage": "Tillat innsamling av bruksdata",
-        "desc": "Tillater innsamling av bruksdata. Dette sender en anonymisert identifikator, nåværende Unraid-versjon, nåværende versjon av pluginet, og aktivert/deaktivert-status for noen funksjoner. Ingen personlig eller nettverksinformasjon innhentes.",
-        "modal": "Dette programtillegget deler grunnleggende informasjon som programtillegg- og Unraid-versjon med utvikleren for å hjelpe til med å forbedre fremtidige oppdateringer. Det samler ikke inn personopplysninger. Vennligst klikk på Godta for å gi tillatelse til dette eller Avslå for å deaktivere."
-    }
+    "diag_success": "Diagnostikk lastet opp. ID:",
+    "upload_success": "Opplasting vellykket",
+    "upload_prompt": "Diagnosene dine vil bli lastet opp til følgende nettsted for analyse. Er du sikker på at du vil fortsette?",
+    "send_diagnostics": "Send diagnostikk",
+    "cancel": "Avbryt",
+    "upload_error": "Opplastingsfeil",
+    "upload_error_msg": "En feil oppstod under opplasting av diagnostikk. Vennligst prøv igjen senere.",
+    "close": "Lukk"
 }
