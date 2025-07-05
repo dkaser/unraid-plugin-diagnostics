@@ -52,6 +52,8 @@ class Diagnostics
 
         mkdir($diagnosticsFolder, 0755);
 
+        file_put_contents($diagnosticsFolder . "/plugin-diagnostics.txt", "Plugin: {$pluginName}\n");
+
         $customFilters = (array_key_exists("filters", $config)) ? $config["filters"] : array();
         if ( ! is_array($customFilters)) {
             throw new \InvalidArgumentException("Invalid filters");
