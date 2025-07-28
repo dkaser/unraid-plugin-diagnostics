@@ -1,0 +1,8 @@
+{
+    "name": "plugin-diagnostics",
+    "package_name": "unraid-plugin-diagnostics",
+    "author": "Derek Kaser",
+    "min": "7.0.0",
+    "icon": "fa-wrench",
+    "support": "https://forums.unraid.net/topic/174968-support-plugin-diagnostics/"
+}
