@@ -1,0 +1,6 @@
+{
+    "files": [
+        "/var/log/plugin-diagnostics.log",
+        "/var/log/plugin-diagnostics.log.*"
+    ]
+}
