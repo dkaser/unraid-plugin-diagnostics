@@ -3,6 +3,7 @@ on:
     types:
       - prereleased
       - released
+      - published
 
 jobs:
   build:
