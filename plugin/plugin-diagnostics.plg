@@ -4,7 +4,7 @@
 <PLUGIN 
   name="plugin-diagnostics"
   author="Derek Kaser"
-  version="2025.07.28"
+  version="2025.10.21.0220"
   
   pluginURL="https://raw.githubusercontent.com/dkaser/unraid-plugin-diagnostics/main/plugin/plugin-diagnostics.plg"
   support="https://forums.unraid.net/topic/174968-support-plugin-diagnostics/"
@@ -16,6 +16,12 @@
 <CHANGES>
 <![CDATA[
 
+### 2025.10.21.0220
+
+### 🐛 Bug Fixes
+
+- Clean up buffer on error ([#12](https://github.com/dkaser/unraid-plugin-diagnostics/pull/12))
+
 ### 2025.07.28
 
 - Add log files to enhanced log viewer
@@ -24,18 +30,14 @@
 
 - feat: add plugin-diagnostics file to output
 
-### 2025.07.02
-
-- Feat: add confirmation dialog for diagnostic uploads
-
 
 For older releases, see https://github.com/dkaser/unraid-plugin-diagnostics/releases
 ]]>
 </CHANGES>
 
-<FILE Name="/boot/config/plugins/plugin-diagnostics/unraid-plugin-diagnostics-2025.07.28-noarch-1.txz">
-<URL>https://github.com/dkaser/unraid-plugin-diagnostics/releases/download/2025.07.28/unraid-plugin-diagnostics-2025.07.28-noarch-1.txz</URL>
-<SHA256>5296833bbec5fa355bfc77787192247b126d2f813d451e468c83ec5f7eb4b07d</SHA256>
+<FILE Name="/boot/config/plugins/plugin-diagnostics/unraid-plugin-diagnostics-2025.10.21.0220-noarch-1.txz">
+<URL>https://github.com/dkaser/unraid-plugin-diagnostics/releases/download/2025.10.21.0220/unraid-plugin-diagnostics-2025.10.21.0220-noarch-1.txz</URL>
+<SHA256>3c49a14f947efc2b3b59d2dd14502e02828d7e0dd2622a7a2dc131bacf15863a</SHA256>
 </FILE>
 
 <!--
@@ -44,15 +46,15 @@ The 'install' script.
 <FILE Run="/bin/bash">
 <INLINE>
 <![CDATA[
-upgradepkg --install-new /boot/config/plugins/plugin-diagnostics/unraid-plugin-diagnostics-2025.07.28-noarch-1.txz
+upgradepkg --install-new /boot/config/plugins/plugin-diagnostics/unraid-plugin-diagnostics-2025.10.21.0220-noarch-1.txz
 
 # cleanup old versions
-rm -f $(ls /boot/config/plugins/plugin-diagnostics/unraid-plugin-diagnostics-*.txz 2>/dev/null | grep -v '2025.07.28')
+rm -f $(ls /boot/config/plugins/plugin-diagnostics/unraid-plugin-diagnostics-*.txz 2>/dev/null | grep -v '2025.10.21.0220')
 
 echo ""
 echo "----------------------------------------------------"
 echo " plugin-diagnostics has been installed."
-echo " Version: 2025.07.28"
+echo " Version: 2025.10.21.0220"
 echo "----------------------------------------------------"
 echo ""
 ]]>
